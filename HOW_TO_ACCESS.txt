@@ -1,0 +1,198 @@
+================================================================================
+                    HOW TO ACCESS ADMIN, PROVIDER & GUEST PAGES
+================================================================================
+
+STEP 1: START THE SERVER
+-------------------------
+cd listing-platform
+php artisan serve
+
+Server will start at: http://localhost:8000
+
+
+STEP 2: OPEN THE LOGIN PAGE
+----------------------------
+Go to: http://localhost:8000/login
+
+You'll see buttons to login as:
+- Admin (red button)
+- Provider (green buttons)
+- Guest (blue buttons)
+
+
+QUICK ACCESS URLS
+================================================================================
+
+LOGIN AS ADMIN:
+http://localhost:8000/test-login/admin@example.com
+→ Takes you to: Moderation Queue
+
+LOGIN AS PROVIDER:
+http://localhost:8000/test-login/sarah@example.com
+→ Takes you to: Provider Dashboard
+
+LOGIN AS GUEST:
+http://localhost:8000/test-login/guest1@example.com
+→ Takes you to: Listings Page
+
+
+ALL PAGES BY ROLE
+================================================================================
+
+PUBLIC PAGES (No Login Required):
+----------------------------------
+Home/Listings:          http://localhost:8000
+Browse Listings:        http://localhost:8000/listings
+View Listing:           http://localhost:8000/listings/{slug}
+Send Enquiry:           http://localhost:8000/listings/{slug}/enquire
+
+
+ADMIN PAGES (Login as admin@example.com first):
+------------------------------------------------
+Moderation Queue:       http://localhost:8000/admin/moderation
+Review Listing:         http://localhost:8000/admin/moderation/{id}
+
+What Admin Can Do:
+✓ View all pending listings
+✓ Approve listings
+✓ Reject listings (with reason)
+✓ Suspend listings
+✓ View moderation history
+
+
+PROVIDER PAGES (Login as sarah@example.com first):
+---------------------------------------------------
+Provider Dashboard:     http://localhost:8000/provider/dashboard
+Create Listing:         http://localhost:8000/provider/listings/create
+Edit Listing:           http://localhost:8000/provider/listings/{id}/edit
+
+What Provider Can Do:
+✓ View all their listings
+✓ Create new listings (saved as draft)
+✓ Edit draft listings
+✓ Submit listings for moderation
+✓ See rejection reasons
+✓ Delete draft listings
+
+
+GUEST PAGES (Login as guest1@example.com or browse without login):
+-------------------------------------------------------------------
+Browse Listings:        http://localhost:8000/listings
+View Listing:           http://localhost:8000/listings/{slug}
+Send Enquiry:           http://localhost:8000/listings/{slug}/enquire
+
+What Guest Can Do:
+✓ Browse all approved listings
+✓ Search and filter listings
+✓ View listing details
+✓ Send enquiries to providers
+
+
+TEST USER ACCOUNTS
+================================================================================
+
+ADMIN:
+Email: admin@example.com
+Password: password
+
+PROVIDERS:
+Email: sarah@example.com, emma@example.com, olivia@example.com, etc.
+Password: password (for all)
+
+GUESTS:
+Email: guest1@example.com, guest2@example.com, guest3@example.com, etc.
+Password: password (for all)
+
+
+QUICK TEST WORKFLOW
+================================================================================
+
+TEST AS ADMIN:
+1. Go to: http://localhost:8000/test-login/admin@example.com
+2. You'll see the moderation queue
+3. Click "Review" on any pending listing
+4. Click "Approve" or "Reject" with a reason
+5. Logout: Click your name → Logout
+
+TEST AS PROVIDER:
+1. Go to: http://localhost:8000/test-login/sarah@example.com
+2. You'll see your dashboard with all your listings
+3. Click "Create New Listing" to add a new one
+4. Fill the form and click "Create Listing"
+5. Click "Submit" to send it for moderation
+6. Logout: Click your name → Logout
+
+TEST AS GUEST:
+1. Go to: http://localhost:8000/listings
+2. Click on any listing to view details
+3. Click "Send Enquiry" to contact the provider
+4. Fill the form and submit
+
+
+NAVIGATION BAR
+================================================================================
+
+After logging in, you'll see:
+
+ADMIN sees:
+- Browse Listings
+- Moderation (link to queue)
+- Your Name (Admin badge)
+- Logout dropdown
+
+PROVIDER sees:
+- Browse Listings
+- My Dashboard (link to dashboard)
+- Your Name (Provider badge)
+- Logout dropdown
+
+GUEST sees:
+- Browse Listings
+- Your Name (Guest badge)
+- Logout dropdown
+
+
+LOGOUT
+================================================================================
+
+Option 1: Click your name in top-right → Click "Logout"
+Option 2: Visit: http://localhost:8000/test-logout
+
+
+TROUBLESHOOTING
+================================================================================
+
+Problem: "User not found" error
+Solution: Make sure you ran: php artisan migrate:fresh --seed
+
+Problem: Can't access admin/provider pages
+Solution: Login first using the /login page or test-login URLs
+
+Problem: No listings showing
+Solution: Run: php artisan migrate:fresh --seed
+
+Problem: Server not running
+Solution: Run: php artisan serve
+
+
+IMPORTANT NOTES
+================================================================================
+
+⚠️ The test-login URLs are for TESTING ONLY
+   In production, install Laravel Breeze for proper authentication
+
+⚠️ Make sure database is seeded
+   Run: php artisan migrate:fresh --seed
+
+⚠️ All test passwords are: password
+
+
+READY TO START?
+================================================================================
+
+1. Open: http://localhost:8000/login
+2. Click any login button
+3. Start exploring!
+
+Enjoy! 🎉
+
